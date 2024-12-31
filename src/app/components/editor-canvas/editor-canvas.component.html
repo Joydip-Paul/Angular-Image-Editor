@@ -1,0 +1,69 @@
+<div class="jd-editor">
+    <div class="jd-editor-sidebar">
+        <ul>
+            <li (click)="changeTab('basic')">
+                <img src="assets/images/basic.svg" alt="">
+                <h3>Basic</h3>
+            </li>
+            <li (click)="changeTab('filters')">
+                <img src="assets/images/filter.svg" alt="">
+                <h3>Filters</h3>
+            </li>
+            <li (click)="changeTab('add-text')">
+                <img src="assets/images/add-text.svg" alt="">
+                <h3>Add Text</h3>
+            </li>
+        </ul>
+    </div>
+    <div class="jd-editor-center">
+        <canvas id="jdCanvas"></canvas>
+    </div>
+    <div class="jd-editor-right">
+        <ng-container *ngIf="tabActive === 'basic'">
+            <div class="action-grid-2 pb-10">
+                <button><img src="assets/images/up.svg" alt=""></button>
+                <button><img src="assets/images/down.svg" alt=""></button>
+                <button><img src="assets/images/left.svg" alt=""></button>
+                <button><img src="assets/images/right.svg" alt=""></button>
+            </div>
+            <div class="action-grid-1">
+                <button (click)="rotateImage()">
+                    <img src="assets/images/rotate.svg" alt="Rotate">
+                    <h3>Flip Horizontal</h3>
+                </button>
+                <button (click)="rotateImage()">
+                    <img src="assets/images/rotate.svg" alt="Rotate">
+                    <h3>Flip Vertical</h3>
+                </button>
+            </div>
+            <div class="action-grid-2 pt-10">
+                <button (click)="rotateImage()">
+                    <img src="assets/images/rotate.svg" alt="Rotate">
+                    <h3>Rotate</h3>
+                </button>
+                <button (click)="rotateImage()">
+                    <img src="assets/images/zoom-in.svg" alt="Rotate">
+                    <h3>Zoom In</h3>
+                </button>
+                <button (click)="rotateImage()">
+                    <img src="assets/images/zoom-out.svg" alt="Rotate">
+                    <h3>Zoom Out</h3>
+                </button>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="tabActive === 'filters'">
+            <div class="filters">
+                <h3>Filters</h3>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="tabActive === 'add-text'">
+            <div class="add-text">
+                <h3>Add Text</h3>
+                <input type="text" placeholder="Enter text here">
+                <button>Add Text</button>
+            </div>
+
+        </ng-container>
+
+    </div>
+</div>
