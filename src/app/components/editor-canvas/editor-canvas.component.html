@@ -21,31 +21,34 @@
     <div class="jd-editor-right">
         <ng-container *ngIf="tabActive === 'basic'">
             <div class="action-grid-2 pb-10">
-                <button><img src="assets/images/up.svg" alt=""></button>
-                <button><img src="assets/images/down.svg" alt=""></button>
-                <button><img src="assets/images/left.svg" alt=""></button>
-                <button><img src="assets/images/right.svg" alt=""></button>
+                <button class="ac-btn" (click)="moveImage('up')"><img src="assets/images/up.svg" alt="Up"></button>
+                <button class="ac-btn" (click)="moveImage('down')"><img src="assets/images/down.svg"
+                        alt="Down"></button>
+                <button class="ac-btn" (click)="moveImage('left')"><img src="assets/images/left.svg"
+                        alt="Left"></button>
+                <button class="ac-btn" (click)="moveImage('right')"><img src="assets/images/right.svg"
+                        alt="Right"></button>
             </div>
             <div class="action-grid-1">
-                <button (click)="rotateImage()">
+                <button class="ac-btn">
                     <img src="assets/images/rotate.svg" alt="Rotate">
                     <h3>Flip Horizontal</h3>
                 </button>
-                <button (click)="rotateImage()">
+                <button class="ac-btn">
                     <img src="assets/images/rotate.svg" alt="Rotate">
                     <h3>Flip Vertical</h3>
                 </button>
             </div>
             <div class="action-grid-2 pt-10">
-                <button (click)="rotateImage()">
+                <button class="ac-btn" (click)="rotateImage()">
                     <img src="assets/images/rotate.svg" alt="Rotate">
                     <h3>Rotate</h3>
                 </button>
-                <button (click)="rotateImage()">
+                <button class="ac-btn" (click)="zoomIn()">
                     <img src="assets/images/zoom-in.svg" alt="Rotate">
                     <h3>Zoom In</h3>
                 </button>
-                <button (click)="rotateImage()">
+                <button class="ac-btn" (click)="zoomOut()">
                     <img src="assets/images/zoom-out.svg" alt="Rotate">
                     <h3>Zoom Out</h3>
                 </button>
@@ -64,6 +67,11 @@
             </div>
 
         </ng-container>
-
+        <div class="download-action">
+            <div class="download-action-flex">
+                <button class="main-btn secondary-btn" (click)="resetCanvas()">Reset</button>
+                <button class="main-btn" (click)="downloadImage()">Download</button>
+            </div>
+        </div>
     </div>
 </div>

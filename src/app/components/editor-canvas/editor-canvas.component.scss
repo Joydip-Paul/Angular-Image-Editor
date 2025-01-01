@@ -1,7 +1,7 @@
 .jd-editor {
     &-sidebar {
         background-color: #fff;
-        box-shadow: rgba(149, 157, 165, 0.2) 6px 0px 20px 0px;
+        // box-shadow: rgba(149, 157, 165, 0.2) 6px 0px 20px 0px;
         width: 100px;
         position: fixed;
         top: 0;
@@ -19,7 +19,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #f29900;
+                    background-color: #FFA31A;
                 }
 
                 img {
@@ -41,15 +41,20 @@
     }
 
     &-center {
-        margin-left: 100px;
+        margin-left: 80px;
         margin-right: 360px;
-        padding: 30px;
+        padding: 30px 60px;
         background-color: #cdcdcd;
+        height: calc(100vh - 60px);
 
         canvas {
             width: 100%;
             height: 100%;
-            min-height: 100vh;
+            object-fit: contain;
+            transform-origin: center center;
+            background-color: #cdcdcd;
+            padding: 10px;
+            border-radius: 3px;
         }
     }
 
@@ -58,10 +63,10 @@
         top: 0;
         right: 0;
         width: 300px;
-        height: 100%;
         background-color: #fff;
-        box-shadow: rgba(149, 157, 165, 0.2) -6px 0px 20px 0px;
+        // box-shadow: rgba(149, 157, 165, 0.2) -6px 0px 20px 0px;
         padding: 30px;
+        height: calc(100vh - 60px);
 
         .action-grid-2 {
             display: grid;
@@ -75,25 +80,18 @@
             gap: 10px;
         }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #e2e2e2;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .download-action {
+            position: absolute;
+            left: 0;
+            width: calc(100% - 20px);
+            bottom: 0px;
+            padding: 20px 10px;
+            border-top: 1px solid #a8a8a8;
 
-            h3 {
-                margin-left: 10px;
-            }
-
-            &:hover {
-                background-color: #f29900;
-                opacity: 0.8;
+            &-flex {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
             }
         }
     }

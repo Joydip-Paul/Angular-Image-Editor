@@ -19,7 +19,6 @@ export class EditorLandingComponent {
 
       reader.onload = (e: ProgressEvent<FileReader>) => {
         const imageData = e.target?.result as string;
-        // Pass image data as navigation extras
         this.router.navigate(['/editor'], { state: { imageData } });
       };
 
