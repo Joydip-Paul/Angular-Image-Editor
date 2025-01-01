@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AddTextComponent } from "../add-text/add-text.component";
 
 @Component({
   selector: 'app-editor-canvas',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, AddTextComponent],
   templateUrl: './editor-canvas.component.html',
   styleUrl: './editor-canvas.component.scss'
 })
@@ -18,6 +20,16 @@ export class EditorCanvasComponent {
   private offsetX: number = 0;
   private offsetY: number = 0;
   private scale: number = 1;
+
+  private textObjects: Array<{
+    text: string;
+    color: string;
+    size: number;
+    x: number;
+    y: number;
+    isSelected: boolean;
+  }> = [];
+
 
   constructor() { }
 
@@ -52,19 +64,14 @@ export class EditorCanvasComponent {
 
   drawCanvas() {
     if (this.canvas && this.ctx && this.img) {
-      // Clear the canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      // Save the context state
       this.ctx.save();
-
-      // Apply transformations
-      this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2); // Center the image
-      this.ctx.rotate((this.currentRotation * Math.PI) / 180); // Rotate
-      this.ctx.scale(this.scale, this.scale); // Scale
+      this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
+      this.ctx.rotate((this.currentRotation * Math.PI) / 180);
+      this.ctx.scale(this.scale, this.scale);
       this.ctx.drawImage(
         this.img,
-        -this.img.width / 2 + this.offsetX, // Offset for panning
+        -this.img.width / 2 + this.offsetX,
         -this.img.height / 2 + this.offsetY
       );
       this.ctx.restore();
@@ -87,6 +94,28 @@ export class EditorCanvasComponent {
     this.drawCanvas();
   }
 
+  private flipHorizontal: boolean = false;
+  private flipVertical: boolean = false;
+
+  flipImage(mode: 'horizontal' | 'vertical') {
+    if (this.canvas && this.ctx && this.img) {
+      if (mode === 'horizontal') {
+        this.flipHorizontal = !this.flipHorizontal;
+      } else if (mode === 'vertical') {
+        this.flipVertical = !this.flipVertical;
+      }
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.save();
+      this.ctx.translate(
+        this.flipHorizontal ? this.canvas.width : 0,
+        this.flipVertical ? this.canvas.height : 0
+      );
+      this.ctx.scale(this.flipHorizontal ? -1 : 1, this.flipVertical ? -1 : 1);
+      this.ctx.drawImage(this.img, 0, 0);
+      this.ctx.restore();
+    }
+  }
+
   moveImage(direction: 'up' | 'down' | 'left' | 'right') {
     const step = 10;
     switch (direction) {
@@ -104,6 +133,17 @@ export class EditorCanvasComponent {
         break;
     }
     this.drawCanvas();
+  }
+
+  addTextToCanvas(textData: { text: string; color: string; size: number }) {
+    if (this.canvas && this.ctx) {
+      const { text, color, size } = textData;
+      this.ctx.save();
+      this.ctx.fillStyle = color;
+      this.ctx.font = `${size}px Arial`;
+      this.ctx.fillText(text, this.canvas.width / 2, this.canvas.height / 2);
+      this.ctx.restore();
+    }
   }
 
 

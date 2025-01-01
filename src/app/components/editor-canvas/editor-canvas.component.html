@@ -30,11 +30,11 @@
                         alt="Right"></button>
             </div>
             <div class="action-grid-1">
-                <button class="ac-btn">
+                <button class="ac-btn" (click)="flipImage('horizontal')">
                     <img src="assets/images/rotate.svg" alt="Rotate">
                     <h3>Flip Horizontal</h3>
                 </button>
-                <button class="ac-btn">
+                <button class="ac-btn" (click)="flipImage('vertical')">
                     <img src="assets/images/rotate.svg" alt="Rotate">
                     <h3>Flip Vertical</h3>
                 </button>
@@ -60,12 +60,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="tabActive === 'add-text'">
-            <div class="add-text">
-                <h3>Add Text</h3>
-                <input type="text" placeholder="Enter text here">
-                <button>Add Text</button>
-            </div>
-
+            <app-add-text (addText)="addTextToCanvas($event)"></app-add-text>
         </ng-container>
         <div class="download-action">
             <div class="download-action-flex">

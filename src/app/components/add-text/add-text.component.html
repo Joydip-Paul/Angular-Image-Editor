@@ -1,0 +1,7 @@
+<div class="add-text">
+    <h3>Add Text</h3>
+    <input type="text" placeholder="Enter text here" [(ngModel)]="text" />
+    <input type="color" [(ngModel)]="fontColor" title="Choose text color" />
+    <input type="number" [(ngModel)]="fontSize" min="10" max="100" placeholder="Font size" />
+    <button (click)="emitText()">Add Text</button>
+</div>

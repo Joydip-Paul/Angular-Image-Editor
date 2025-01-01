@@ -42,7 +42,7 @@
 
     &-center {
         margin-left: 80px;
-        margin-right: 360px;
+        margin-right: 340px;
         padding: 30px 60px;
         background-color: #cdcdcd;
         height: calc(100vh - 60px);
@@ -65,8 +65,8 @@
         width: 300px;
         background-color: #fff;
         // box-shadow: rgba(149, 157, 165, 0.2) -6px 0px 20px 0px;
-        padding: 30px;
-        height: calc(100vh - 60px);
+        padding: 20px;
+        height: calc(100vh - 40px);
 
         .action-grid-2 {
             display: grid;
