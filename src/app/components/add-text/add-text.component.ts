@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class AddTextComponent {
   text: string = '';
   fontColor: string = '#000000';
-  fontSize: number = 20;
+  fontSize: number = 100;
 
   @Output() addText = new EventEmitter<{ text: string; color: string; size: number }>();
 

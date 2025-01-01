@@ -37,6 +37,41 @@ export class EditorCanvasComponent {
     setTimeout(() => {
       this.canvas = document.getElementById('jdCanvas') as HTMLCanvasElement;
       this.ctx = this.canvas?.getContext('2d') || null;
+
+      this.canvas.addEventListener('mousedown', (event) => {
+        const startX = event.offsetX;
+        const startY = event.offsetY;
+        this.canvas!.style.cursor = 'grabbing';
+
+        const onMouseMove = (moveEvent: MouseEvent) => {
+          const dx = (moveEvent.offsetX - startX) * 0.1; // Reduce movement speed
+          const dy = (moveEvent.offsetY - startY) * 0.1; // Reduce movement speed
+          this.offsetX += dx;
+          this.offsetY += dy;
+          this.drawCanvas();
+        };
+
+        const onMouseUp = () => {
+          this.canvas!.style.cursor = 'default';
+          this.canvas?.removeEventListener('mousemove', onMouseMove);
+          this.canvas?.removeEventListener('mouseup', onMouseUp);
+        };
+
+        this.canvas?.addEventListener('mousemove', onMouseMove);
+        this.canvas?.addEventListener('mouseup', onMouseUp);
+      });
+
+      this.canvas.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        const zoomFactor = 0.1;
+        if (event.deltaY < 0) {
+          this.scale += zoomFactor;
+        } else {
+          this.scale = Math.max(this.scale - zoomFactor, 0.1);
+        }
+        this.drawCanvas();
+      });
+
       const state = history.state;
       if (state && state.imageData) {
         this.loadImage(state.imageData);
